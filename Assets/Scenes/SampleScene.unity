@@ -8860,33 +8860,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7527257988930874013, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
   m_PrefabInstance: {fileID: 7962988195806100891}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &75676616
-Rigidbody2D:
-  serializedVersion: 5
+--- !u!114 &75676621
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75676612}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad58a5d1c4e9d545a899dfbbfbaddc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runSpeed: 10
 --- !u!1 &484609337
 GameObject:
   m_ObjectHideFlags: 0
@@ -13543,9 +13529,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1756508224725789119, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
-      propertyPath: m_AnimatePhysics
-      value: 0
+    - target: {fileID: 5436174346161726817, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7527257988930874013, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
       propertyPath: m_Name
@@ -13597,7 +13583,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7527257988930874013, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 75676616}
+      addedObject: {fileID: 75676621}
   m_SourcePrefab: {fileID: 100100000, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
