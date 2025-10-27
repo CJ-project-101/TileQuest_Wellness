@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 20491790}
   - component: {fileID: 20491789}
   - component: {fileID: 20491788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platforms Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8872,7 +8872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad58a5d1c4e9d545a899dfbbfbaddc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 10
+  runSpeed: 4.59
+  jumpSpeed: 8.65
 --- !u!1 &484609337
 GameObject:
   m_ObjectHideFlags: 0
@@ -13533,6 +13534,14 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5436174346161726817, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
+      propertyPath: m_GravityScale
+      value: 1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436174346161726817, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7527257988930874013, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
       propertyPath: m_Name
       value: Daleem
@@ -13577,7 +13586,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3891805079933028978, guid: 8212b72abcd303f4fa5b515d576d9fbd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
