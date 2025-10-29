@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 0d82c7ef82da2314b80611c335039945
+guid: f2742aac8b1cf2e42af60908daf207ed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6723963429988506304
-    second: Spikes_0
-  - first:
-      213: -7010832575621253078
-    second: Spikes_1
+      213: 7896663456982830724
+    second: TileVania+Mushroom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -116,53 +113,39 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Spikes_0
+      name: TileVania+Mushroom_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 29
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline:
-      - - {x: -15, y: -8.5}
-        - {x: 15, y: -8.5}
-        - {x: 10, y: 8.5}
-        - {x: -7, y: 8.5}
-      physicsShape:
-      - - {x: -14.5, y: -11.5}
-        - {x: 14.5, y: -11.5}
-        - {x: 12.5, y: 5.5}
-        - {x: -9.5, y: 5.5}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0ca9e2f4d11505d50800000000000000
-      internalID: 6723963429988506304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spikes_1
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 0
-        width: 11
-        height: 17
+        width: 32
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -15, y: 7}
+        - {x: -15, y: -1}
+        - {x: -6, y: -1}
+        - {x: -6, y: -14}
+        - {x: 6, y: -14}
+        - {x: 6, y: -1}
+        - {x: 15, y: -1}
+        - {x: 15, y: 7}
+        - {x: 13, y: 12}
+        - {x: 10.115473, y: 14}
+        - {x: -9, y: 14}
+        - {x: -13, y: 12}
+      - - {x: 9, y: -7}
+        - {x: 9, y: -7}
+        - {x: 9, y: -7}
+        - {x: 9, y: -7}
       tessellationDetail: 0
       bones: []
-      spriteID: ba14d0ea30096ae4e8730e7c51c01156
-      internalID: -7010832575621253078
+      spriteID: 48e05486395969d60800000000000000
+      internalID: 7896663456982830724
       vertices: []
       indices: 
       edges: []
@@ -171,7 +154,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f90ed84d97d889843977413257943a7c
+    spriteID: 1968cf01d3f395f4280f39f266d8b996
     internalID: 0
     vertices: []
     indices: 
@@ -181,9 +164,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Spikes_0: 6723963429988506304
-      Spikes_1: -7010832575621253078
-      Spikes_2: -71853624
+      TileVania+Mushroom_0: 7896663456982830724
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
