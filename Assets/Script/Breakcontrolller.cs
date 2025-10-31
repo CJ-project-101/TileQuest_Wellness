@@ -5,26 +5,29 @@ using TMPro;
 public class BreakController : MonoBehaviour
 {
     public TMP_Text messageText;
-    private HealthManager healthManager;
+    private GameManager gameManager;
 
     void Start()
     {
-        // Find HealthManager in the MainScene
-        healthManager = FindObjectOfType<HealthManager>();
+        // Find GameManager in the main scene
+        gameManager = Object.FindFirstObjectByType<GameManager>();
+        // For older Unity versions: gameManager = FindObjectOfType<GameManager>();
 
         if (messageText)
-            messageText.text = "Take a quick wellness break!";
+            messageText.text = "🌿 Take a short wellness break!";
     }
 
-    // Called by the Resume button or AI verification
+    // Called by Resume Button or AI verification
     public void ResumeGame()
     {
         if (messageText)
-            messageText.text = "Welcome back! Resuming...";
-        // Unload this scene
+            messageText.text = "✨ Welcome back! Resuming...";
+
+        // Unload BreakScene
         SceneManager.UnloadSceneAsync("BreakScene");
-        // Tell HealthManager to resume the game
-        if (healthManager != null)
-            healthManager.EndBreakAndResume();
+
+        // Tell GameManager to resume
+        if (gameManager != null)
+            gameManager.EndBreakAndResume();
     }
 }
