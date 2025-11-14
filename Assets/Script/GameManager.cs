@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [Header("Play & Rest Timing (seconds)")]
-    public float startPlayTime = 15f;      // 15 minutes
-    public float maxPlayTime = 60f;       // 60 minutes
-    public float resetPlayTime = 60f;     // 60 minutes (after reaching max)
-    public float startRestTime = 5f;      // 5 minutes
-    public float maxRestTime = 15f;        // 15 minutes
-    public float growthStep = 10f;         // +10 minutes each cycle
+    public float startPlayTime = 900f;      // 15 minutes
+    public float maxPlayTime = 3600f;       // 60 minutes
+    public float resetPlayTime = 3120f;     // 52 minutes
+    public float startRestTime = 300f;      // 5 minutes
+    public float maxRestTime = 900f;        // 15 minutes
+    public float growthStep = 600f;         // +10 minutes each cycle
 
     [Header("UI Display (Optional)")]
-    public TMP_Text infoText;               // Assign in Inspector
-    public Image timerBar;                  // Optional progress bar
+    public TMP_Text infoText;
+    public Image timerBar;
 
     private float currentPlayTime;
     private float currentRestTime;
@@ -38,21 +38,18 @@ public class GameManager : MonoBehaviour
         float remaining = inRest ? currentRestTime - timer : currentPlayTime - timer;
         float total = inRest ? currentRestTime : currentPlayTime;
 
-        // update progress bar
         if (timerBar)
         {
             timerBar.fillAmount = Mathf.Clamp01(remaining / total);
             timerBar.color = inRest ? Color.cyan : Color.green;
         }
 
-        // update info text
         if (infoText)
         {
             string mode = inRest ? "REST" : "PLAY";
             infoText.text = $"{mode} MODE\nRemaining: {(remaining / 60f):F1} min";
         }
 
-        // check if it's time to switch
         if (!inRest && timer >= currentPlayTime)
             StartRest();
         else if (inRest && timer >= currentRestTime)
@@ -64,17 +61,17 @@ public class GameManager : MonoBehaviour
         inRest = true;
         timer = 0f;
 
-        // Optionally disable player control
+        // Disable player controls
         var player = Object.FindFirstObjectByType<PlayerMovement>();
         if (player) player.enabled = false;
 
         Debug.Log($"🔵 REST started for {currentRestTime / 60f:F1} min.");
 
-        // 🌿 Load the Break Scene overlay (if not already loaded)
+        // Load BreakScene overlay
         if (!SceneManager.GetSceneByName("BreakScene").isLoaded)
         {
             SceneManager.LoadScene("BreakScene", LoadSceneMode.Additive);
-            Debug.Log("🌿 BreakScene loaded additively (overlay mode).");
+            Debug.Log("🌿 BreakScene loaded additively.");
         }
 
         UpdateInfo();
@@ -86,11 +83,30 @@ public class GameManager : MonoBehaviour
         timer = 0f;
         cycleCount++;
 
-        // Re-enable player control
+        Debug.Log("🟢 Rest timer finished — auto-resuming...");
+
+        // Automatically trigger BreakController.ResumeGame() if active
+        var breakController = Object.FindFirstObjectByType<BreakController>();
+        if (breakController != null)
+        {
+            breakController.ResumeGame();
+            return;
+        }
+
+        // Safety: unload BreakScene if still loaded
+        if (SceneManager.GetSceneByName("BreakScene").isLoaded)
+        {
+            SceneManager.UnloadSceneAsync("BreakScene");
+            Debug.Log("BreakScene unloaded manually.");
+        }
+
+        // Resume player movement
         var player = Object.FindFirstObjectByType<PlayerMovement>();
         if (player) player.enabled = true;
 
-        // Adaptive time adjustment
+        Time.timeScale = 1f;
+
+        // Adaptive cycle progression
         if (currentPlayTime < maxPlayTime)
         {
             currentPlayTime = Mathf.Min(currentPlayTime + growthStep, maxPlayTime);
@@ -98,17 +114,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // reset after max
             currentPlayTime = resetPlayTime;
             currentRestTime = maxRestTime;
             Debug.Log("♻️ Cycle reset: play = 52 min, rest = 15 min");
         }
 
-        Debug.Log($"Cycle #{cycleCount}: 🟢 Play = {currentPlayTime / 60f:F1} min | 🔵 Rest = {currentRestTime / 60f:F1} min");
+        Debug.Log($"✅ Auto-resume complete. Next: Play = {currentPlayTime / 60f:F1} min | Rest = {currentRestTime / 60f:F1} min");
         UpdateInfo();
     }
 
-    // Called by BreakController when "Resume Game" is pressed
     public void EndBreakAndResume()
     {
         inRest = false;
@@ -116,16 +130,19 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         Debug.Log("✅ Game resumed after wellness break!");
 
-        // Safely unload BreakScene (if still loaded)
         if (SceneManager.GetSceneByName("BreakScene").isLoaded)
         {
             SceneManager.UnloadSceneAsync("BreakScene");
             Debug.Log("🟢 BreakScene unloaded.");
         }
 
-        // re-enable player
         var player = Object.FindFirstObjectByType<PlayerMovement>();
         if (player) player.enabled = true;
+    }
+
+    public float GetCurrentRestTime()
+    {
+        return currentRestTime;
     }
 
     void UpdateInfo()
